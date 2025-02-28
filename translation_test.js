@@ -1,56 +1,32 @@
-// =========================================
-// CONFIGURATION AND HELPER FUNCTIONS
-// =========================================
-
-// Setting up headers for the Anthropics API (authentication and content type)
-const headers = {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${secret_value('anthropic-key')}`
-};
-
-// Logging utility that accumulates logs if debug mode is enabled
-function createLogger(debug) {
-    const logs = [];
-    return {
-        log: (message) => {
-            if (debug) {
-                logs.push(message);
-            }
-        },
-        getLogs: () => logs
-    };
-}
-
-// Function to call the Anthropics API for chat completion
-function chatCompletion(prompt, debug = false) {
-    const logger = createLogger(debug);
-    const apiUrl = "https://api.anthropic.com/v1/messages";
-
-    
-    
-    const payload = {
-        model: "claude-3", // Replace with the desired model
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 100
-    };
-
-    logger.log("Payload prepared for Anthropics API request.");
-
-    try {
-        const response = web_request(apiUrl, 'post', payload, headers);
-        logger.log("Received response from Anthropics API.");
-        return debug ? { response, logs: logger.getLogs() } : response;
-    } catch (error) {
-        logger.log(`Error calling Anthropics API: ${error}`);
-        return { error: "Error calling Anthropics API", logs: logger.getLogs() };
-    }
-}
-
-// Example usage:
-const debugMode = false;
+function 
 
 var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
 result =  anthropicProvider.generateText('Sample prompt', {
   debugPrompt: true,
   max_tokens: 100
 });
+
+
+const changesetParams = {
+  changeset_id: context.changeset_id, // Optional, if updating existing
+  target_item_id: context.entity.id,   // Required: the ID of the item
+  target_item_type: context.entity.type,        // Required: type of the item (e.g. "Product")
+  proposed_changes: [
+    { property_id: "name", values: ["french value", "french value 2"] },
+  ], // Required: the changes to apply, can be an array of objects
+  status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
+  accepted: true,  // Optional: accept or reject changes
+  new_changeset: false,  // Optional: whether to create a new changeset
+  flow_locale_id: "fr-CA"  // Optional: if localization is needed
+};
+
+// Call the changeset_save method with the above parameters
+changeset_save(changesetParams);
+
+// Function to simulate calling the Ruby method (this is just a placeholder)
+function changeset_save(params) {
+  console.log("Calling changeset_save with the following parameters:", params);
+  
+  // Here you would invoke the backend API or server-side code that calls the Ruby method.
+  // For example, using fetch or other methods to make an HTTP request to your backend.
+}
