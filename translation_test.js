@@ -6,7 +6,7 @@
 // Setting up headers for the OpenAI API (authentication and content type)
 const headers = {
   "Content-Type": "application/json",
-  "Authorization": `Bearer ${secret_value('open-ai-key')}`
+  "Authorization": `Bearer ${secret_value('open-salsify-token')}`
 };
 
 // Logging utility that accumulates logs if debug mode is enabled
