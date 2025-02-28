@@ -22,7 +22,7 @@ const changesetParams = {
 
 // Call the changeset_save method with the above parameters
 changeset_save(changesetParams);
-
+changesetParams
 // Function to simulate calling the Ruby method (this is just a placeholder)
 function changeset_save(params) {
   console.log("Calling changeset_save with the following parameters:", params);
