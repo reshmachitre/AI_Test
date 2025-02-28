@@ -1,10 +1,10 @@
 
 
-var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
-result =  anthropicProvider.generateText('Sample prompt', {
-  debugPrompt: true,
-  max_tokens: 100
-});
+//var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
+//result =  anthropicProvider.generateText('Sample prompt', {
+ // debugPrompt: true,
+  //max_tokens: 100
+//});
 
 
 const changesetParams = {
@@ -17,10 +17,11 @@ const changesetParams = {
   status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
   accepted: true,  // Optional: accept or reject changes
   new_changeset: true,  // Optional: whether to create a new changeset
-  flow_locale_id: "fr-CA"  // Optional: if localization is needed
+  locale_id: "fr-CA"  // Optional: if localization is needed
 };
 
 // Call the changeset_save method with the above parameters
 //changeset_save(changesetParams);
 changesetParams
-changeset_save(changesetParams);
+var res = changeset_save(changesetParams);
+res
