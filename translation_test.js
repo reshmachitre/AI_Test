@@ -10,13 +10,13 @@ result =  anthropicProvider.generateText('Sample prompt', {
 const changesetParams = {
   changeset_id: context.changeset_id, // Optional, if updating existing
   target_item_id: context.entity.id,   // Required: the ID of the item
-  target_item_type: context.entity.type,        // Required: type of the item (e.g. "Product")
+  target_item_type: "Product",        // Required: type of the item (e.g. "Product")
   proposed_changes: [
     { property_id: "name", values: ["french value", "french value 2"] },
   ], // Required: the changes to apply, can be an array of objects
   status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
   accepted: true,  // Optional: accept or reject changes
-  new_changeset: false,  // Optional: whether to create a new changeset
+  new_changeset: true,  // Optional: whether to create a new changeset
   flow_locale_id: "fr-CA"  // Optional: if localization is needed
 };
 
