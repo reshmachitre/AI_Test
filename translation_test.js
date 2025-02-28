@@ -12,12 +12,12 @@ const changesetParams = {
   target_item_id: context.entity.id,   // Required: the ID of the item
   target_item_type: "Product",        // Required: type of the item (e.g. "Product")
   proposed_changes: [
-    { property_id: "name", values: ["french value", "french value 2"] },
+    { property_id: "name", values: ["french value", "french value 2"], locale_id: "fr-CA" },
   ], // Required: the changes to apply, can be an array of objects
   status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
   accepted: true,  // Optional: accept or reject changes
   new_changeset: true,  // Optional: whether to create a new changeset
-  locale_id: "fr-CA"  // Optional: if localization is needed
+    // Optional: if localization is needed
 };
 
 // Call the changeset_save method with the above parameters
