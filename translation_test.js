@@ -1,4 +1,4 @@
-function 
+
 
 var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
 result =  anthropicProvider.generateText('Sample prompt', {
