@@ -21,13 +21,5 @@ const changesetParams = {
 };
 
 // Call the changeset_save method with the above parameters
-changeset_save(changesetParams);
+//changeset_save(changesetParams);
 changesetParams
-// Function to simulate calling the Ruby method (this is just a placeholder)
-function changeset_save(params) {
-  console.log("Calling changeset_save with the following parameters:", params);
-  params
-  
-  // Here you would invoke the backend API or server-side code that calls the Ruby method.
-  // For example, using fetch or other methods to make an HTTP request to your backend.
-}
