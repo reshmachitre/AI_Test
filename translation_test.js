@@ -50,7 +50,7 @@ function chatCompletion(prompt, debug = false) {
 const debugMode = false;
 
 var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
-result =  openAIProvider.generateText('Sample prompt', {
+result =  anthropicProvider.generateText('Sample prompt', {
   debugPrompt: true,
   max_tokens: 100
 });
