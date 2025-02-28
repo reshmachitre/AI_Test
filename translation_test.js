@@ -1,7 +1,5 @@
 
 
-const request = require('sync-request');
-
 // =========================================
 // CONFIGURATION AND HELPER FUNCTIONS
 // =========================================
@@ -25,40 +23,40 @@ function createLogger(debug) {
     };
 }
 
-// Function to call the Anthropics API for chat completion synchronously
-function chatCompletion(prompt, debug) {
-    const logger = createLogger(debug);
-    const apiUrl = "https://api.anthropic.com/v1/complete";
+// Function to make a synchronous HTTP request (compatible with mini-racer)
+function syncHttpRequest(url, method, data, headers, logger) {
+    const xhr = new XMLHttpRequest();
+    xhr.open(method, url, false); // false makes it synchronous
 
-    const payload = {
-        model: "claude-v1", // Replace with the desired model
-        prompt: prompt,
-        max_tokens: 100
-    };
+    // Set headers
+    for (const key in headers) {
+        xhr.setRequestHeader(key, headers[key]);
+    }
 
-    logger.log("Payload prepared for Anthropics API request.");
+    logger.log(`Sending ${method} request to ${url}`);
 
     try {
-        const res = request('POST', apiUrl, {
-            json: payload,
-            headers: headers
-        });
+        xhr.send(JSON.stringify(data));
 
-        const responseData = JSON.parse(res.getBody('utf8'));
-        logger.log("Received response from Anthropics API.");
-
-        return debug ? { response: responseData, logs: logger.getLogs() } : responseData;
+        if (xhr.status >= 200 && xhr.status < 300) {
+            logger.log("Received successful response from Anthropics API.");
+            return JSON.parse(xhr.responseText);
+        } else {
+            logger.log(`HTTP Error: ${xhr.status} - ${xhr.statusText}`);
+            return { error: `HTTP Error: ${xhr.status} - ${xhr.statusText}` };
+        }
     } catch (error) {
-        logger.log(`Error calling Anthropics API: ${error}`);
-        return { error: "Error calling Anthropics API", logs: logger.getLogs() };
+        logger.log(`Request failed: ${error}`);
+        return { error: "Request failed", details: error };
     }
 }
+
+// Function to call the Anthropics API for chat completion
+function chatCompletion(prompt, debug = false) {
+  
 
 // Example usage:
 const debugMode = false;
 const response = chatCompletion("Hello, how are you?", debugMode);
 console.log(response);
-
-
-const debugPrompt = false;
-chatCompletion
+response
