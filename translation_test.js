@@ -12,7 +12,7 @@ const changesetParams = {
   target_item_id: context.entity.id,   // Required: the ID of the item
   target_item_type: "Product",        // Required: type of the item (e.g. "Product")
   proposed_changes: [
-    { property_id: "Description", values: ["french value", "french value 2"], locale_id: "fr-CA" },
+    { property_id: "description", values: ["french value", "french value 2"], locale_id: "fr-CA" },
   ], // Required: the changes to apply, can be an array of objects
   status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
   accepted: true,  // Optional: accept or reject changes
