@@ -23,5 +23,5 @@ const changesetParams = {
 // Call the changeset_save method with the above parameters
 //changeset_save(changesetParams);
 changesetParams
-var res = changeset_save(changesetParams);
+const res = changeset_save(changesetParams);
 res
