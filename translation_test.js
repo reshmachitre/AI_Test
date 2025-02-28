@@ -25,6 +25,8 @@ function createLogger(debug) {
 function chatCompletion(prompt, debug = false) {
     const logger = createLogger(debug);
     const apiUrl = "https://api.anthropic.com/v1/messages";
+
+    
     
     const payload = {
         model: "claude-3", // Replace with the desired model
@@ -46,5 +48,9 @@ function chatCompletion(prompt, debug = false) {
 
 // Example usage:
 const debugMode = false;
-const response = chatCompletion("Hello, how are you?", debugMode);
-response
+
+var anthropicProvider = SalsifyAI.anthropicProvider(secret_value('anthropic-key'));
+result =  openAIProvider.generateText('Sample prompt', {
+  debugPrompt: true,
+  max_tokens: 100
+});
