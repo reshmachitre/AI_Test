@@ -15,7 +15,6 @@ const changesetParams = {
     { property_id: "Description", values: ["french value", "french value 2"], locale_id: "fr-CA" },
   ], // Required: the changes to apply, can be an array of objects
   status: "open",  // Optional: status of the changeset ("open", "closed", "applied")
-  accepted: true,  // Optional: accept or reject changes
   new_changeset: true,  // Optional: whether to create a new changeset
     // Optional: if localization is needed
 };
